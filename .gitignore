@@ -11,7 +11,7 @@ data/y_test.csv
 data/scaler.joblib
 
 # Trained models and generated results (regenerate via 02_train_models.py / 03_shap_explain.py)
-outputs/*.joblib
+outputs/all_models.joblib
 outputs/X_sample_for_shap.csv
 outputs/shap_values_sample.npy
 
