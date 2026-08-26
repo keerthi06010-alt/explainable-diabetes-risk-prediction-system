@@ -1,0 +1,11 @@
+{
+  "best_model_name": "Random Forest",
+  "feature_type": "raw",
+  "metrics": {
+    "Accuracy": 0.7308222958057395,
+    "Precision": 0.3410086487700775,
+    "Recall": 0.7594746716697937,
+    "F1": 0.47067943102980503,
+    "ROC_AUC": 0.821618495649999
+  }
+}
