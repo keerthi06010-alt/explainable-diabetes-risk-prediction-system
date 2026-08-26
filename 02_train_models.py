@@ -106,9 +106,16 @@ print(results_df)
 results_df.to_csv("outputs/model_comparison.csv")
 
 # ---- Select best model by ROC-AUC ----
-best_name = results_df.index[0]
+# ---- Select best model by ROC-AUC, with a deterministic tie-break ----
+TIE_TOLERANCE = 1e-3
+PRIORITY = ["XGBoost", "Random Forest", "Logistic Regression", "Decision Tree"]
+
+top_score = results_df["ROC_AUC"].max()
+tied_models = results_df[results_df["ROC_AUC"] >= top_score - TIE_TOLERANCE].index.tolist()
+best_name = next(m for m in PRIORITY if m in tied_models)
 best_model, best_feature_type = fitted_models[best_name]
-print(f"\nBest model selected: {best_name} (feature set: {best_feature_type})")
+print(f"\nModels within tie tolerance of top ROC-AUC: {tied_models}")
+print(f"Best model selected: {best_name} (feature set: {best_feature_type})")
 
 joblib.dump(best_model, "outputs/best_model.joblib")
 with open("outputs/best_model_info.json", "w") as f:
