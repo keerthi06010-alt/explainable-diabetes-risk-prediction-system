@@ -122,6 +122,8 @@ with col1:
     st.subheader("Prediction")
     st.metric("Predicted Risk", f"{risk_color} {risk_label}")
     st.metric("Estimated Probability", f"{prob*100:.1f}%")
+    prob = np.asarray(prob).flatten()[0]
+    prob = float(prob)
     st.progress(min(max(prob, 0.0), 1.0))
 
     st.subheader("Clinical Decision Support")
